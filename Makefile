@@ -2,6 +2,7 @@ BIN := venv/bin
 PYTHON := $(BIN)/python
 SOURCES := app.py
 vers ?= latest
+DOCKER_TAG := fa18-calhacks-$(USER)
 
 
 venv: requirements.txt
@@ -10,6 +11,7 @@ venv: requirements.txt
 
 clean:
 	rm -rf venv
+	docker images | awk '/$(DOCKER_TAG)/ { print $$3 }' | xargs -I {} docker rmi {}
 
 build: Dockerfile requirements.txt $(SOURCES)
 	docker build -t fa18-calhacks-$(USER):$(vers) .

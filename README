@@ -1,0 +1,18 @@
+# CalHacks 5.0 (Fall 2018) Containerization Workshop Demo Code
+
+This repository contains a simple Flask application (app.py) and a Dockerfile
+that packages and executes the application through `gunicorn`. It is controlled
+by means of a Makefile, so you will need to have `make` installed, along with
+a reasonably recent Docker runtime and Python 3.
+
+After cloning the repository, one can edit `app.py` to modify the behavior of
+the application, and use `make dev` to launch the development server listening
+on `127.0.0.1:5000`. Once one is ready to "deploy" the application, one can do
+so by running `make docker-run`, which builds and executes an ephemeral container
+to run the application, listening on port 5000, or by using `make build` and
+manipulating the resulting file oneself afterwards.
+
+Dependencies:
+* Docker runtime
+* Python 3(.5)
+* GNU Make
